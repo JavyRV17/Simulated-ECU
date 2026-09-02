@@ -1,0 +1,5 @@
+# ESP-IDF
+ecu/build/
+
+# VS Code
+.vscode/
