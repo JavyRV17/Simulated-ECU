@@ -1,5 +1,8 @@
 idf_component_register(
-    SRCS "Swc_Lights.c"
+    SRCS 
+       "Swc_HeadLights.c"
+       "Swc_HeadLightsKnob.c"
+
     INCLUDE_DIRS "."
-    REQUIRES iohwab
+    REQUIRES iohwab rte base 
 )

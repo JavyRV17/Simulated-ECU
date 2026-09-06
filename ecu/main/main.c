@@ -4,7 +4,8 @@
 #include "Port.h"
 #include "Port_Cfg.h"
 
-#include "Swc_Lights.h"
+#include "Swc_HeadLightsKnob.h"
+#include "Swc_HeadLights.h"
 
 //For CAN signals simulation
 #include "driver/uart.h"
@@ -63,11 +64,14 @@ void CANframeCabinStatu(void *pvParameters)
     }
 }
 
+//AUTOSAR runnables in here?
+//Should be encapsulated in task functions? 
 void HeadlightsIo(void *pvParameters)
 {
     while(1)
     {
-        Swc_Lights_Run(); 
+        Runnable_HeadLightsKnob_5ms(); 
+        Runnable_HeadLights_5ms();
 
         vTaskDelay(pdMS_TO_TICKS(5000));
     }
@@ -92,9 +96,12 @@ void app_main(void) {
     //Create software layer to use UART_0
     uart_driver_install(UART_NUM_0, 1024, 0, 0, NULL, 0);
 
+    //SWCs tasks
+    xTaskCreatePinnedToCore(HeadlightsIo, "IO", 4096, NULL, 5, NULL, 0);
+
+    //CAN simulation tasks
     xTaskCreatePinnedToCore(CANframeHB, "HB", 4096, NULL, 1, NULL, 0);
     xTaskCreatePinnedToCore(CANframeVehicleStatus, "VS", 4096, NULL, 4, NULL, 0);
-    xTaskCreatePinnedToCore(HeadlightsIo, "IO", 4096, NULL, 5, NULL, 0);
     xTaskCreatePinnedToCore(CANframeCabinStatu, "CS", 4096, NULL, 1, NULL, 0);
 
 
