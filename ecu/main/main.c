@@ -70,10 +70,10 @@ void HeadlightsIo(void *pvParameters)
 {
     while(1)
     {
-        Runnable_HeadLightsKnob_5ms(); 
-        Runnable_HeadLights_5ms();
+        Runnable_HeadLightsKnob_500ms(); 
+        Runnable_HeadLights_500ms();
 
-        vTaskDelay(pdMS_TO_TICKS(5000));
+        vTaskDelay(pdMS_TO_TICKS(500));
     }
 }
 
@@ -107,3 +107,25 @@ void app_main(void) {
 
 }
 
+
+
+
+
+
+
+
+
+
+//DEBUGGING PORTS
+// #include "driver/gpio.h"
+
+// void app_main(void) {
+// while (1)
+// {
+//     int level = gpio_get_level(GPIO_NUM_23);
+
+//     printf("GPIO23 = %d\n", level);
+
+//     vTaskDelay(pdMS_TO_TICKS(500));
+// }
+// }

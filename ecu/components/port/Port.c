@@ -10,7 +10,7 @@
 const gpio_num_t Port_ChannelHwMap[] = 
 {
     GPIO_NUM_2,
-    GPIO_NUM_4
+    GPIO_NUM_23
 };
 
 void Port_Init(const Port_ConfigType* ConfigPtr) 

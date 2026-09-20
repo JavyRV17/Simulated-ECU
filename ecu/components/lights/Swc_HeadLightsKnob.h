@@ -3,6 +3,6 @@
 
 #include "Std_Types.h"
 
-void Runnable_HeadLightsKnob_5ms(void);
+void Runnable_HeadLightsKnob_500ms(void);
 
 #endif

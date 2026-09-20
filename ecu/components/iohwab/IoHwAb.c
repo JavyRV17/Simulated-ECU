@@ -3,8 +3,13 @@
 
 #include "Dio_Cfg.h"
 
-//TODO: Should this go to RTE?
-void IoHwAb_PLightState_WriteChannel(int value) {
+//Server-Runnable? 
+void IoHwAb_PLightState_WriteChannel(uint8 value) {
 
     Dio_WriteChannel(DIO_CHANNEL_LED, value); 
+}
+
+void IoHwAb_PLightState_ReadChannel(uint8 *value) 
+{
+    *value = Dio_ReadChannel(DIO_CHANNEL_BUTTON);
 }

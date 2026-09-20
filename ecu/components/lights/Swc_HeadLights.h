@@ -6,6 +6,6 @@
 //The runnables should be here 
 //This SWC is to set/get states of headlights
 
-void Runnable_HeadLights_5ms(void);
+void Runnable_HeadLights_500ms(void);
 
 #endif 

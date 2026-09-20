@@ -4,7 +4,7 @@
 const gpio_num_t Dio_ChannelHwMapD[] = 
 {
     GPIO_NUM_2,
-    GPIO_NUM_4
+    GPIO_NUM_23
 };
 
 
