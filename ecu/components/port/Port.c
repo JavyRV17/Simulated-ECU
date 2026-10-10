@@ -10,7 +10,8 @@
 const gpio_num_t Port_ChannelHwMap[] = 
 {
     GPIO_NUM_2,
-    GPIO_NUM_23
+    GPIO_NUM_23,
+    // ADC0
 };
 
 void Port_Init(const Port_ConfigType* ConfigPtr) 
@@ -34,13 +35,21 @@ void Port_Init(const Port_ConfigType* ConfigPtr)
         gpio_reset_pin(hwPin);
         
         //According to current PIN, it is configured as input or output
-        if (ConfigPtr->Pins[i].direction == PORT_PIN_OUT) 
+        
+        if (ConfigPtr->Pins[i].modeType == PORT_PIN_MODE_ADC)
         {
-            gpio_set_direction(hwPin, GPIO_MODE_OUTPUT); 
+            // Configuración específica del pin para uso ADC
         }
         else 
         {
-            gpio_set_direction(hwPin, GPIO_MODE_INPUT); 
+            if (ConfigPtr->Pins[i].direction == PORT_PIN_OUT) 
+            {
+                gpio_set_direction(hwPin, GPIO_MODE_OUTPUT); 
+            }
+            else 
+            {
+                gpio_set_direction(hwPin, GPIO_MODE_INPUT); 
+            }
         }
     }
 }

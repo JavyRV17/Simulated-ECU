@@ -8,13 +8,22 @@
 static const Port_PinConfigType Port_PinConfig[] = 
 {
     {             
-        .pinType = PORT_PIN_LED,          //IDs from Port_Cfg.h
-        .direction = PORT_PIN_OUT
+        .pinType = PORT_PIN_LED,   //IDs from Port_Cfg.h
+        .direction = PORT_PIN_OUT,  
+        .modeType = PORT_PIN_MODE_DIO
     },
 
     {    
-        .pinType = PORT_PIN_BUTTON,           //IDs from Port_Cfg.h
-        .direction = PORT_PIN_IN
+        .pinType = PORT_PIN_BUTTON,       //IDs from Port_Cfg.h
+        .direction = PORT_PIN_IN,
+        .modeType = PORT_PIN_MODE_DIO
+        
+    },
+
+    {    
+        .pinType = PORT_PIN_POT,           //IDs from Port_Cfg.h
+        .direction = PORT_PIN_IN,
+        .modeType = PORT_PIN_MODE_ADC
     }
 };
 

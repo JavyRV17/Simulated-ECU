@@ -6,6 +6,7 @@
 //These are not physical pins, this is an ID requested by AUTOSAR
 #define PORT_PIN_LED        ((Port_PinType)0u) 
 #define PORT_PIN_BUTTON     ((Port_PinType)1u)
+#define PORT_PIN_POT        ((Port_PinType)2u)
 
 //Wrapper
 //Here is declared the Port_Config variable, so the c must have the implementation

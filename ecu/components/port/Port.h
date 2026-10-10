@@ -14,7 +14,7 @@ typedef uint8 Port_PinType;
 typedef enum 
 {
     PORT_PIN_IN = 0u, //Why Am I using u? -> to make it sure unsigned 
-    PORT_PIN_OUT
+    PORT_PIN_OUT, 
 } Port_PinDirectionType; 
 
 //A port pin shall be configurable with the number of port pin modes available in the MCU.
@@ -31,7 +31,7 @@ typedef enum {
 typedef struct {
     Port_PinType pinType;
     Port_PinDirectionType direction; 
-    // Port_PinModeType modeType; //TODO to define it later 
+    Port_PinModeType modeType;
 } Port_PinConfigType; 
 
 //Hardware dependant structure 
