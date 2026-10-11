@@ -87,80 +87,30 @@ void HeadlightsIo(void *pvParameters)
     }
 }
 
-void app_main(void) {
-
-    // Port_Init(&Port_Config);
-
-    //     //Set of UART 
-    // uart_config_t uart_config = {
-    //     .baud_rate = 115200,
-    //     .data_bits = UART_DATA_8_BITS,
-    //     .parity = UART_PARITY_DISABLE,
-    //     .stop_bits = UART_STOP_BITS_1,
-    //     .flow_ctrl = UART_HW_FLOWCTRL_DISABLE
-    // };
-
-    // //Apply previous config and set UART_NUM_0
-    // uart_param_config(UART_NUM_0, &uart_config);
-
-    // //Create software layer to use UART_0
-    // uart_driver_install(UART_NUM_0, 1024, 0, 0, NULL, 0);
-
-    // //SWCs tasks
-    // xTaskCreatePinnedToCore(HeadlightsIo, "IO", 4096, NULL, 5, NULL, 0);
-
-    // //CAN simulation tasks
-    // xTaskCreatePinnedToCore(CANframeHB, "HB", 4096, NULL, 1, NULL, 0);
-    // xTaskCreatePinnedToCore(CANframeVehicleStatus, "VS", 4096, NULL, 4, NULL, 0);
-    // xTaskCreatePinnedToCore(CANframeCabinStatu, "CS", 4096, NULL, 1, NULL, 0);
-
-
-
-    //SINGLE ADC 
-
-printf("ADC TEST START\n");
-
-adc2_config_channel_atten(
-    ADC2_CHANNEL_0,
-    ADC_ATTEN_DB_12
-);
-
-while (1)
+void app_main(void) 
 {
-    int raw_value;
+     Port_Init(&Port_Config);
 
-    esp_err_t result = adc2_get_raw(
-        ADC2_CHANNEL_0,
-        ADC_WIDTH_BIT_12,
-        &raw_value
-    );
+     //Set of UART 
+     uart_config_t uart_config = {
+         .baud_rate = 115200,
+         .data_bits = UART_DATA_8_BITS,
+         .parity = UART_PARITY_DISABLE,
+         .stop_bits = UART_STOP_BITS_1,
+         .flow_ctrl = UART_HW_FLOWCTRL_DISABLE
+     };
 
-    printf("ADC RESULT = %d, RAW = %d\n",   , raw_value);
+     //Apply previous config and set UART_NUM_0
+     uart_param_config(UART_NUM_0, &uart_config);
 
-    vTaskDelay(pdMS_TO_TICKS(1000));
+     //Create software layer to use UART_0
+     uart_driver_install(UART_NUM_0, 1024, 0, 0, NULL, 0);
 
+     //SWCs tasks
+     xTaskCreatePinnedToCore(HeadlightsIo, "IO", 4096, NULL, 5, NULL, 0);
+
+     //CAN simulation tasks
+     xTaskCreatePinnedToCore(CANframeHB, "HB", 4096, NULL, 1, NULL, 0);
+     xTaskCreatePinnedToCore(CANframeVehicleStatus, "VS", 4096, NULL, 4, NULL, 0);
+     xTaskCreatePinnedToCore(CANframeCabinStatu, "CS", 4096, NULL, 1, NULL, 0);
 }
-}
-
-
-
-
-
-
-
-
-
-
-//DEBUGGING PORTS
-// #include "driver/gpio.h"
-
-// void app_main(void) {
-// while (1)
-// {
-//     int level = gpio_get_level(GPIO_NUM_23);
-
-//     printf("GPIO23 = %d\n", level);
-
-//     vTaskDelay(pdMS_TO_TICKS(500));
-// }
-// }
